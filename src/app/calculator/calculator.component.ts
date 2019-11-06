@@ -12,9 +12,9 @@ export class CalculatorComponent implements OnInit {
 
   formModel = new CalcForm(null, 15, null);
 
-  public billTotal: number;
-  public partySize: number = null;
-  public tip: number;
+  // public billTotal: number;
+  // public partySize: number = null;
+  public calcTip: number;
   public calculatedBill: number;
 
 
@@ -29,6 +29,7 @@ export class CalculatorComponent implements OnInit {
   action() {
     this.calculateTip();
     this.calculateBillTotal();
+    console.log(this.formModel)
   }
 
   constructor() { }

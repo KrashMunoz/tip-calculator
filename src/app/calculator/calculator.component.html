@@ -1,7 +1,7 @@
 <div class="calculator">
       <h3> {{ title }}</h3>
       <div>
-        <form action="" #calculatorForm="ngForm">
+        <form #calculatorForm="ngForm" (ngSubmit)="action()" novalidate>
             <!-- {{ calculatorForm.value | json }} -->
           <label for="total-bill">
             Total Bill
@@ -20,11 +20,8 @@
             <select #tip="ngModel"
                     [(ngModel)]="formModel.selectedTip"
                     required name="tip-selector" id="">
-                    <option value="10">10%</option>
-              <option value="15">15%</option>
-              <option value="18">18%</option>
-              <option value="20">20%</option>
-              <option value="25">25%</option>
+                <!-- <option value="" selected>Default</option> -->
+                <option *ngFor="let tip of tipDropDown" value="18">{{tip}}%</option>
             </select>
           </label>
 
@@ -33,7 +30,7 @@
             <input [(ngModel)]="formModel.partySize" type="number" name="party-size" id="" placeholder="Max. 20 People">
           </label>
 
-          <button type="submit" (click)="action()">Calculate Tip</button>
+          <button type="submit">Calculate Tip</button>
         </form>
       </div>
 </div>
