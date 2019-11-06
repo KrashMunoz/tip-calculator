@@ -1,0 +1,30 @@
+<div class="calculator">
+      <h3> {{ title }}</h3>
+      <div>
+        <form action="" #calculatorForm="ngForm">
+            {{ calculatorForm.value | json }}
+          <label for="total-bill">
+            Total Bill
+            <input [(ngModel)]="formModel.billTotal" type="number" name="total-bill" placeholder="Total Bill">
+          </label>
+
+          <label for="tip-selector">
+            Tip Percentage
+            <select [(ngModel)]="formModel.selectedTip" name="tip-selector" id="">
+              <option value="10">10%</option>
+              <option value="15">15%</option>
+              <option value="18">18%</option>
+              <option value="20">20%</option>
+              <option value="25">25%</option>
+            </select>
+          </label>
+
+          <label for="party-size">
+            Party Size
+            <input [(ngModel)]="formModel.partySize" type="number" name="party-size" id="" placeholder="Max. 20 People">
+          </label>
+
+          <button type="submit" (click)="action()">Calculate Tip</button>
+        </form>
+      </div>
+</div>

@@ -1,0 +1,47 @@
+  /* .content {
+    height: 100%;
+    width: 100%;
+    background: #efefef;
+    display: flex;
+    margin: auto;
+  } */
+
+
+  /* .wrapper {
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      grid-template-areas: 
+      "header" "header" "header" "header" "header" "header"
+      "content" "content" "content" "content" "content" "content"
+      "content" "content" "content" "content" "content" "content"
+      "content" "content" "content" "content" "content" "content"
+      "content" "content" "content" "content" "content" "content"
+      "footer" "footer" "footer" "footer" "footer" "footer";
+  } */
+
+  .wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+  }
+
+  app-header {
+      background: #000;
+      color: white;
+  }
+
+  app-footer {
+      margin-top: auto;
+      height: 35px;
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 1em;
+  }
+
+  app-calculator {
+      display: flex;
+      margin: auto;
+  }

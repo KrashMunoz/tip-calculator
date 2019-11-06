@@ -1,0 +1,13 @@
+header {
+    max-width: 800px;
+}
+ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin-left: auto;
+}
+
+li {
+    margin: 0 1em;
+}
