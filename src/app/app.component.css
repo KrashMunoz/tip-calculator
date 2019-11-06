@@ -34,7 +34,7 @@
 
   app-footer {
       margin-top: auto;
-      height: 35px;
+      /* height: 35px; */
       background: #000;
       color: white;
       text-align: center;

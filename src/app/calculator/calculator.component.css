@@ -34,3 +34,10 @@
   button {
     float: right;
   }
+
+  .is-invalid {
+      outline: 0;
+      /* box-sizing: border-box; */
+      border-radius: 2px;
+      box-shadow: 0 0 2pt 1pt red;
+  }
