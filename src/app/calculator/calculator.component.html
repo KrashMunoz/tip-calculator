@@ -1,7 +1,7 @@
 <div class="calculator">
   <h3> {{ title }}</h3>
   <div>
-    <form #calculatorForm="ngForm" (ngSubmit)="action()" novalidate>
+    <form #calculatorForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
       <!-- {{ calculatorForm.value | json }} -->
       <label for="total-bill">
         Total Bill

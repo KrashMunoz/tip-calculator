@@ -11,6 +11,6 @@ export class CalculateService {
   constructor(private _http: HttpClient) { }
 
   calculate(calcForm: CalcForm) {
-    this._http.post<any>(this._url, calcForm);
+    return this._http.post<any>(this._url, calcForm);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { CalcForm } from '../calc-form';
+import { CalculateService } from '../calculate.service';
 
 @Component({
   selector: 'app-calculator',
@@ -52,14 +53,20 @@ export class CalculatorComponent implements OnInit {
     console.log('finalTotal =>', this.calculatedBill)
   }
 
-  action() {
+  constructor(private _calculateService : CalculateService) { }
+
+  onSubmit() {
     console.log("form model =>", this.formModel)
     this.calculateBillTotal();
+
+    this._calculateService.calculate(this.formModel)
+      .subscribe(
+        data => console.log("Success! =>", data),
+        error => console.error("Error! =>", error)
+      )
   }
 
   // Watch Codevolution Angular Forms Tutorial - 11 for more addional examples
-
-  constructor() { }
 
   ngOnInit() {
   }
