@@ -11,23 +11,29 @@
                    required 
                    type="number" 
                    name="total-bill" 
-                   placeholder="Total Bill">
-          </label>
+                   placeholder="Total Bill"
+                   min="0"
+                   pattern="^[1-9]+(\.[0-9]{1,2})?$">
+                  </label>
+                  <small *ngIf="initialBill.invalid && initialBill.touched">Total bill is required</small>
 
           <label for="tip-selector">
             Tip Percentage
             <!-- [class.is-invalid]="initialBill.invalid && initialBill.touched" -->
             <select #tip="ngModel"
                     [(ngModel)]="formModel.selectedTip"
-                    required name="tip-selector" id="">
+                    required name="tip-selector" id=""
+                    [class.is-invalid]="tip.invalid && tip.touched"
+                    >
                 <!-- <option value="" selected>Default</option> -->
-                <option *ngFor="let tip of tipDropDown" value="18">{{tip}}%</option>
-            </select>
-          </label>
+                <option *ngFor="let tip of tipDropDown" value="{{tip}}">{{tip}}%</option>
+              </select>
+            </label>
+            <small *ngIf="tip.invalid && tip.touched">Tip percentage is required</small>
 
           <label for="party-size">
             Party Size
-            <input [(ngModel)]="formModel.partySize" type="number" name="party-size" id="" placeholder="Max. 20 People">
+            <input [(ngModel)]="formModel.partySize" type="number" min="0" name="party-size" id="" placeholder="Max. 20 People">
           </label>
 
           <button type="submit">Calculate Tip</button>
