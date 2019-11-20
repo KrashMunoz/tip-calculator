@@ -7,29 +7,54 @@ import { CalcForm } from '../calc-form';
   styleUrls: ['./calculator.component.css']
 })
 export class CalculatorComponent implements OnInit {
+  public formSubmitted = false;
   public title: string = 'Tip Calculator';
   public tipDropDown: number[] = [10, 15, 18, 20, 25];
+  tipHasError: boolean = true;
 
-  formModel = new CalcForm(null, 15, null);
+  formModel = new CalcForm(null, 'default', null);
 
   // public billTotal: number;
   // public partySize: number = null;
   public calcTip: number;
   public calculatedBill: number;
 
+  validateTip(value) {
+    if (value === 'default') {
+      this.tipHasError = true;
+    } else {
+      this.tipHasError = false;
+    }
+  }
 
-  calculateTip() {
-    console.log('tip')
+  calculateTip(tip, total) {
+    var tipAmount: number;
+    
+    tipAmount = total * tip;
+    console.log('tip amount =>', tipAmount);
+
+    return tipAmount
   }
 
   calculateBillTotal() {
-    console.log('finalTotal')
+    let tip = Number((Number(this.formModel.selectedTip)/100).toFixed(2))
+    let total = Number(this.formModel.billTotal)
+    let partySize = this.formModel.partySize
+    this.calcTip = this.calculateTip(tip, total)
+    const finalBill = total + this.calcTip
+
+    if (partySize === null) {
+      this.calculatedBill = finalBill
+    } else {
+      this.calculatedBill = finalBill / partySize;
+    }
+    this.formSubmitted = true;
+    console.log('finalTotal =>', this.calculatedBill)
   }
 
   action() {
-    this.calculateTip();
+    console.log("form model =>", this.formModel)
     this.calculateBillTotal();
-    console.log(this.formModel)
   }
 
   constructor() { }

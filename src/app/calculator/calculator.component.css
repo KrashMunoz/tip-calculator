@@ -13,6 +13,8 @@
     padding: 0;
     margin: 0 0 1em 0;
   }
+
+  form { height: 124px }
   
   form label {
     display: flex;
@@ -40,4 +42,17 @@
       /* box-sizing: border-box; */
       border-radius: 2px;
       box-shadow: 0 0 2pt 1pt red;
+  }
+
+  .results {
+    margin-top: 1em;
+  }
+
+  .results > div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .results > div > p {
+    margin: 0 .5em;
   }
