@@ -57,6 +57,8 @@ export class CalculatorComponent implements OnInit {
     this.calculateBillTotal();
   }
 
+  // Watch Codevolution Angular Forms Tutorial - 11 for more addional examples
+
   constructor() { }
 
   ngOnInit() {
