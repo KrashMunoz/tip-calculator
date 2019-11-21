@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { CalcForm } from '../calc-form';
 import { CalculateService } from '../calculate.service';
+import Cleave from 'cleave.js';
+import CleaveOptions from 'cleave.js/options'
 
 @Component({
   selector: 'app-calculator',
@@ -19,6 +21,16 @@ export class CalculatorComponent implements OnInit {
   // public partySize: number = null;
   public calcTip: number;
   public calculatedBill: number;
+  public cleave: Cleave;
+
+  cleaveInit() {
+    this.cleave = new Cleave('.input-total-bill', {
+      numeral: true,
+      numeralThousandsGroupStyle: 'none',
+      numericOnly: true,
+      stripLeadingZeroes: true,
+    });
+  }
 
   validateTip(value) {
     if (value === 'default') {
@@ -30,7 +42,7 @@ export class CalculatorComponent implements OnInit {
 
   calculateTip(tip, total) {
     var tipAmount: number;
-    
+
     tipAmount = total * tip;
     console.log('tip amount =>', tipAmount);
 
@@ -38,7 +50,7 @@ export class CalculatorComponent implements OnInit {
   }
 
   calculateBillTotal() {
-    let tip = Number((Number(this.formModel.selectedTip)/100).toFixed(2))
+    let tip = Number((Number(this.formModel.selectedTip) / 100).toFixed(2))
     let total = Number(this.formModel.billTotal)
     let partySize = this.formModel.partySize
     this.calcTip = this.calculateTip(tip, total)
@@ -53,7 +65,7 @@ export class CalculatorComponent implements OnInit {
     console.log('finalTotal =>', this.calculatedBill)
   }
 
-  constructor(private _calculateService : CalculateService) { }
+  constructor(private _calculateService: CalculateService) { }
 
   onSubmit() {
     console.log("form model =>", this.formModel)
@@ -69,6 +81,9 @@ export class CalculatorComponent implements OnInit {
   // Watch Codevolution Angular Forms Tutorial - 11 for more addional examples
 
   ngOnInit() {
+    document.addEventListener('DOMContentLoaded', () => {
+      this.cleaveInit();
+    });
   }
 
 }

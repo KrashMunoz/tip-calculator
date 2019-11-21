@@ -7,14 +7,17 @@
         Total Bill
         <input 
           #initialBill="ngModel" 
+          class="input-total-bill"
           [(ngModel)]="formModel.billTotal"
-          [class.is-invalid]="initialBill.invalid && initialBill.touched" 
+          [class.is-invalid]="initialBill.invalid && initialBill.touched || initialBill.value == 0" 
           required 
           type="number" 
           name="total-bill"
           placeholder="Total Bill" 
           min="1" 
-          pattern="^[0-9]+(\.[0-9]{1,2})?$">
+          pattern="^[0-9]+(\.[0-9]{1,2})?$"
+          >
+          <!-- pattern="^[0-9]+(\.[0-9]{1,2})?$" -->
       </label>
       <!-- Multiple Validation Rules -->
       <div *ngIf="initialBill.errors && (initialBill.invalid && initialBill.touched)">
@@ -45,18 +48,18 @@
           placeholder="Max. 20 People">
       </label>
 
-      <button type="submit" [disabled]="calculatorForm.form.invalid">Calculate Tip</button>
+      <button type="submit" [disabled]="calculatorForm.form.invalid || tipHasError || initialBill.value == 0">Calculate</button>
     </form>
   </div>
   <div *ngIf="formSubmitted" class="results">
     <div>
       <p>Tip:</p>
-      <p>${{calcTip}}</p>
+      <p>{{calcTip | currency:" "}}</p>
     </div>
     <hr>
     <div>
       <p>Total:</p>
-      <p>${{calculatedBill}}</p>
+      <p>{{calculatedBill | currency}}</p>
     </div>
   </div>
 </div>
