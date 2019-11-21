@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { CalcForm } from '../calc-form';
 import { CalculateService } from '../calculate.service';
 import Cleave from 'cleave.js';
-import CleaveOptions from 'cleave.js/options'
+// import CleaveOptions from 'cleave.js/options'
 
 @Component({
   selector: 'app-calculator',
@@ -21,14 +21,35 @@ export class CalculatorComponent implements OnInit {
   // public partySize: number = null;
   public calcTip: number;
   public calculatedBill: number;
-  public cleave: Cleave;
+  // public cleave: Cleave;
 
-  cleaveInit() {
-    this.cleave = new Cleave('.input-total-bill', {
+   private _cleaveInit() {
+    const cleave_bill = new Cleave('.input-bill', {
       numeral: true,
       numeralThousandsGroupStyle: 'none',
       numericOnly: true,
       stripLeadingZeroes: true,
+      onValueChanged: function (e) {
+        let inp = e.target;
+        let value = inp.value;
+        let rawValue= inp.value;
+        console.log(value, rawValue);
+        // e.target = { value: '5100-1234', rawValue: '51001234' }
+    }
+    });
+
+    const cleave_party = new Cleave('.input-party', {
+      numeral: true,
+      numeralThousandsGroupStyle: 'none',
+      numericOnly: true,
+      stripLeadingZeroes: true,
+      onValueChanged: function (e) {
+        let inp = e.target;
+        let value = inp.value;
+        let rawValue= inp.value;
+        console.log(value, rawValue);
+        // e.target = { value: '5100-1234', rawValue: '51001234' }
+    }
     });
   }
 
@@ -82,7 +103,7 @@ export class CalculatorComponent implements OnInit {
 
   ngOnInit() {
     document.addEventListener('DOMContentLoaded', () => {
-      this.cleaveInit();
+      this._cleaveInit();
     });
   }
 

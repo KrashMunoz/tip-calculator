@@ -7,7 +7,7 @@
         Total Bill
         <input 
           #initialBill="ngModel" 
-          class="input-total-bill"
+          class="input-bill"
           [(ngModel)]="formModel.billTotal"
           [class.is-invalid]="initialBill.invalid && initialBill.touched || initialBill.value == 0" 
           required 
@@ -44,7 +44,13 @@
 
       <label for="party-size">
         Party Size
-        <input [(ngModel)]="formModel.partySize" type="number" min="0" name="party-size" id=""
+        <input 
+          #partySize="ngModel"
+          [(ngModel)]="formModel.partySize" 
+          type="number" 
+          class="input-party"
+          min="0" 
+          name="party-size" 
           placeholder="Max. 20 People">
       </label>
 
