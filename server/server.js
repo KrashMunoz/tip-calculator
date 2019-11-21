@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 app.post('/calculate', (req, res) => {
     console.log(req.body);
-    res.status(200 ).send({"message": "data received!"});
+    res.status(200).send({"message": "data received!"});
 })
 
 app.listen(PORT, () => {

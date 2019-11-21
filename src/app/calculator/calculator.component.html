@@ -1,5 +1,8 @@
 <div class="calculator">
   <h3> {{ title }}</h3>
+  <div class="alert alert-danger" *ngIf="errorMsg">
+    {{errorMsg}}
+  </div>
   <div>
     <form #calculatorForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
       <!-- {{ calculatorForm.value | json }} -->

@@ -10,6 +10,8 @@ import Cleave from 'cleave.js';
   styleUrls: ['./calculator.component.css']
 })
 export class CalculatorComponent implements OnInit {
+  errorMsg = '';
+
   public formSubmitted = false;
   public title: string = 'Tip Calculator';
   public tipDropDown: number[] = [10, 15, 18, 20, 25];
@@ -95,7 +97,7 @@ export class CalculatorComponent implements OnInit {
     this._calculateService.calculate(this.formModel)
       .subscribe(
         data => console.log("Success! =>", data),
-        error => console.error("Error! =>", error)
+        error => this.errorMsg = error.statusText
       )
   }
 
