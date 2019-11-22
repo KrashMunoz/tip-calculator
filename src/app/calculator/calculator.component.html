@@ -8,7 +8,9 @@
       <!-- {{ calculatorForm.value | json }} -->
       <label for="total-bill">
         Total Bill
+        <mat-form-field>
         <input 
+          matInput
           #initialBill="ngModel" 
           class="input-bill"
           [(ngModel)]="formModel.billTotal"
@@ -21,7 +23,9 @@
           pattern="^[0-9]+(\.[0-9]{1,2})?$"
           >
           <!-- pattern="^[0-9]+(\.[0-9]{1,2})?$" -->
-      </label>
+        </mat-form-field>
+          
+        </label>
       <!-- Multiple Validation Rules -->
       <div *ngIf="initialBill.errors && (initialBill.invalid && initialBill.touched)">
         <small *ngIf="initialBill.errors.required">Total bill amount is required</small>
@@ -31,7 +35,11 @@
       <label for="tip-selector">
         Tip Percentage
         <!-- [class.is-invalid]="initialBill.invalid && initialBill.touched" -->
+        <mat-form-field>
+        
+        <!-- <mat-label>Tip Percentage</mat-label> -->
         <select 
+        matNativeControl
           #tip="ngModel" 
           [(ngModel)]="formModel.selectedTip" 
           (blur)="validateTip(tip.value)"
@@ -42,12 +50,15 @@
           <option value="default">Select</option>
           <option *ngFor="let tip of tipDropDown" value="{{tip}}">{{tip}}%</option>
         </select>
+        </mat-form-field>
       </label>
       <small *ngIf="tipHasError && tip.touched">Tip percentage is required</small>
 
       <label for="party-size">
         Party Size
+        <mat-form-field>
         <input 
+          matInput
           #partySize="ngModel"
           [(ngModel)]="formModel.partySize" 
           type="number" 
@@ -55,9 +66,14 @@
           min="0" 
           name="party-size" 
           placeholder="Max. 20 People">
+        </mat-form-field>
+
       </label>
 
-      <button type="submit" [disabled]="calculatorForm.form.invalid || tipHasError || initialBill.value == 0">Calculate</button>
+      <button 
+        mat-flat-button color="primary" 
+        type="submit" 
+        [disabled]="calculatorForm.form.invalid || tipHasError || initialBill.value == 0">Calculate</button>
     </form>
   </div>
   <div *ngIf="formSubmitted" class="results">
@@ -65,7 +81,7 @@
       <p>Tip:</p>
       <p>{{calcTip | currency:" "}}</p>
     </div>
-    <hr>
+    <hr>  
     <div>
       <p>Total:</p>
       <p>{{calculatedBill | currency}}</p>
