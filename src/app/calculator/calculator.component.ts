@@ -42,13 +42,14 @@ export class CalculatorComponent implements OnInit {
 
     const cleave_party = new Cleave('.input-party', {
       numeral: true,
+      numeralDecimalScale: 0,
       numeralThousandsGroupStyle: 'none',
       numericOnly: true,
       stripLeadingZeroes: true,
       onValueChanged: function (e) {
         let inp = e.target;
         let value = inp.value;
-        let rawValue= inp.value;
+        let rawValue = inp.value;
         console.log(value, rawValue);
         // e.target = { value: '5100-1234', rawValue: '51001234' }
     }
