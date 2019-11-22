@@ -28,10 +28,10 @@
     max-width: 8em;
   } */
   
-  form label select {
-    /* margin-left: 7em; */
-    /* flex-grow: 2; */
-  }
+  /* form label select {
+    margin-left: 7em;
+    flex-grow: 2;
+  } */
   
   button {
     float: right;
